@@ -1,0 +1,17 @@
+{
+  "name": "vector-logos",
+  "version": "1.0.0",
+  "description": "Find and insert SVG versions of logos and brands without leaving the comforts of Figma.",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "build-watch": "tsc --project tsconfig.json --watch"
+  },
+  "author": "Kevin Wu",
+  "license": "MIT",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.15.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.5"
+  }
+}
