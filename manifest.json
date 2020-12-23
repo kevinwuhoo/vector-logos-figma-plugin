@@ -1,7 +1,7 @@
 {
   "name": "Vector Logos",
   "id": "854152902511629627",
-  "api": "1.1.0",
+  "api": "1.0.0",
   "main": "code.js",
   "ui": "ui.html"
 }
