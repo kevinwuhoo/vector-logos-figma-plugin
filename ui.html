@@ -27,7 +27,6 @@
   .no-results {
     margin: 0 auto;
     margin-top: 2rem;
-    text-align: center;
     color: #0c5460;
     background-color: #d1ecf1;
     border-color: #bee5eb;
@@ -104,6 +103,7 @@
     padding: 0.5rem 1rem;
     text-align: center;
     width: 5.5rem;
+    border: 0;
   }
   .submit:hover {
     background-color: #545b62;
@@ -241,7 +241,7 @@
       const div = document.createElement("div");
       div.className = "no-results";
       div.innerHTML =
-        "No results found. Please check your spelling, otherwise it might be time to try Google!";
+        "No results found. Please check your spelling or try removing any punctuation.<br /><br />Otherwise, it might be time to try Google!";
       resultsContainer.appendChild(div);
       return;
     }
@@ -274,31 +274,28 @@
 
   // query the logo search endpoint and return the array of logos
   async function fetchLogos(query) {
-    const encodedQuery = encodeURIComponent(query);
-    const url = `https://cors-anywhere.herokuapp.com/https://logosear.ch/api/search.json?q=${encodedQuery}&max=96`;
+    const url = `https://vector-logos-figma-plugin-api.vercel.app/api/search?query=${encodeURIComponent(query)}`;
 
     try {
-      const response = await fetch(url);
-      const respJson = await response.json();
+      const response = await (await fetch(url)).json();
 
-      if (!respJson.success) {
+      if (!response.success) {
         return [];
       }
 
-      return respJson.results;
+      return response.results;
     } catch (e) {
       alert("Error searching for logos.");
       console.error("Error fetching logos:", e);
       hideLoading();
     }
-    return [];
   }
 
   // download the logo that was clicked and send text contents for insertion
   async function handleLogoClick({ description, logoUrl }) {
     displayLoading();
     try {
-      const url = `https://cors-anywhere.herokuapp.com/${logoUrl}`;
+      const url = `https://vector-logos-figma-plugin-api.vercel.app/api/logo?query=${logoUrl}`;
       const logoResp = await fetch(url);
       const logoText = await logoResp.text();
 

@@ -1,6 +1,6 @@
 {
   "name": "vector-logos",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Find and insert SVG versions of logos and brands without leaving the comforts of Figma.",
   "main": "code.js",
   "scripts": {
